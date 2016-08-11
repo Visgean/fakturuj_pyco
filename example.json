@@ -1,0 +1,21 @@
+{
+  invoices: [
+    {
+      number: "2016/01",
+      ico: 00029947,
+      date: '11.08.2016'
+      due_date: '+15',
+      items: [
+        {
+          title: 'Fakturovani v excelu',
+          units: 'hod',
+          amount: 20
+          cost: 350
+        }
+      ]
+    
+    }
+  
+  ]
+
+}
