@@ -1,0 +1,22 @@
+{
+      "number": "2016/01",
+      "ico": "00029947",
+      "due_days": 15,
+      "item_list": [
+        {
+          "title": "Fakturovani v excelu",
+          "amount": 20,
+          "cost": 150
+        },
+        {
+          "title": "Kopani prikopu",
+          "amount": 17,
+          "cost": 110
+        },
+        {
+          "title": "Konfigurace Ňaderného reaktoru",
+          "amount": 103019,
+          "cost": 1101
+        }
+      ]
+    }
