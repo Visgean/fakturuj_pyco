@@ -98,8 +98,8 @@
                             </td>
 
                             <td>
-                                Datum vystavení: {{ invoice.date }}<br>
-                                Datum splatnosti: {{ invoice.date_due }}
+                                Datum vystavení: {{ invoice.date.strftime("%d.%m.%Y") }}<br>
+                                Datum splatnosti: {{ invoice.date_due.strftime("%d.%m.%Y") }}
                             </td>
                         </tr>
                     </table>
