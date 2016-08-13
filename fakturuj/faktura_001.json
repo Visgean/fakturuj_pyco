@@ -1,15 +1,8 @@
 {
-  "me": {
-    "ico": "25596641",
-    "name": "Moje mama",
-    "bank_account": "222121222121/121212"
-  },
-  "invoices": [
-    {
       "number": "2016/01",
       "ico": "00029947",
       "date": "11.08.2016",
-      "due_date": "+15",
+      "due_days": 15,
       "items": [
         {
           "title": "Fakturovani v excelu",
@@ -19,5 +12,3 @@
         }
       ]
     }
-  ]
-}
