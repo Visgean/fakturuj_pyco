@@ -61,7 +61,8 @@ def render_template(invoice, info):
         invoice=invoice,
         info=info,
         title='Faktura {}'.format(invoice['number']),
-        sum_total=sum([i['cost'] * i['amount'] for i in invoice['item_list']])
+        sum_total=sum([i['cost'] * i['amount'] for i in invoice['item_list']]),
+        transaction_id=''.join([s for s in invoice['number'] if s.isdigit()])
     )
 
 
