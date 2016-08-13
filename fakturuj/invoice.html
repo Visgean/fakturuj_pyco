@@ -98,8 +98,8 @@
                             </td>
 
                             <td>
-                                Datum vystavení: {{ date }}<br>
-                                Datum splatnosti: {{ date_due }}
+                                Datum vystavení: {{ invoice.date }}<br>
+                                Datum splatnosti: {{ invoice.date_due }}
                             </td>
                         </tr>
                     </table>
@@ -111,18 +111,35 @@
                     <table>
                         <tr>
                             <td>
-                                {{ address }}
-                                <br>
-                                {{ identification }}
+                                {{ info.ares.legal.company_name }}<br>
+                                {{ info.ares.address.street }}<br>
+                                {{ info.ares.address.zip_code }}<br>
+                                {{ info.ares.address.city }}<br>
 
+                                <br>
+
+                                IČ: {{ info.ares.legal.company_id }}<br>
+                                {% if info.ares.legal.company_vat_id %}
+                                    DIČ: {{ info.ares.legal.company_vat_id }}<br>
+                                {% else %}
+                                    Neplátce DPH <br>
+                                {% endif %}
                             </td>
 
                             <td>
-                                {{ billed_address }}
+                                {{ invoice.ares.legal.company_name }}<br>
+                                {{ invoice.ares.address.street }}<br>
+                                {{ invoice.ares.address.zip_code }}<br>
+                                {{ invoice.ares.address.city }}<br>
+
                                 <br>
-                                {{ billed_identification }}
 
-
+                                IČ: {{ invoice.ares.legal.company_id }}<br>
+                                {% if invoice.ares.legal.company_vat_id %}
+                                    DIČ: {{ invoice.ares.legal.company_vat_id }}<br>
+                                {% else %}
+                                    Neplátce DPH <br>
+                                {% endif %}
                             </td>
                         </tr>
                     </table>
@@ -143,7 +160,7 @@
 
             <tr class="details">
                 <td>
-                    {{ account_id }}
+                    {{ info.account }}
                 </td>
 
                 <td>
@@ -161,14 +178,14 @@
                 </td>
             </tr>
 
-            {% for item in items %}
-                <tr class="item {% if forloop.last %}last{% endif %}">
+            {% for item in invoice.item_list %}
+                <tr class="item {% if loop.last %}last{% endif %}">
                     <td>
-                        {{ item.name }}
+                        {{ item.title }}
                     </td>
 
                     <td>
-                        {{ item.cost }}
+                        {{ item.cost * item.amount }}
                     </td>
                 </tr>
             {% endfor %}

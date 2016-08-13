@@ -3,11 +3,17 @@
 import argparse
 import json
 import os
+import pdfkit
 
+from datetime import timedelta
+from ares_util.ares import call_ares
 from dateutil.parser import parse as date_parse
+from jinja2 import Environment, PackageLoader
 
-YES_OPTIONS = ['jo', 'neasi', 'j', 'y']
-NOPE_OPTIONS = ['ne', 'nevim', 'mozna', 'n', 'AAAAAA!!!']
+
+def fuckem(line):
+    print(line)
+    exit(1)
 
 
 def load_data(filename):
@@ -20,40 +26,15 @@ def load_data(filename):
                'proste tam narvi vsude zavorky a je to v cajku.')
 
 
-def yesno(question):
-    while True:
-        r = input(question)
-        if r.lower() in YES_OPTIONS:
-            return True
-        elif r.lower() in NOPE_OPTIONS:
-            return False
-
-
 def ask_stupid_questions():
-    print('Sorry sraci, ale beze jmena fakturu nevybleju. ')
-
     personal_info = {
-        'name': input('Jmeno vole: '),
-        'phone': input('Telefon: '),
-        'email': input('Elektricka adresa: '),
-        'dph': yesno('Jses platce dani? '),
         'ico': input('ICO, pyco. '),
         'account': input('Cislo uctu: '),
-        'address': [
-            input('Ulice: '),
-            input('Smerovaci cislo: '),
-            input('Mesto / vesnice: ')
-        ]
+        # 'phone': input('Telefon: '),
+        # 'email': input('Elektricka adresa: '),
     }
-
-    if personal_info['dph']:
-        personal_info['dico'] = input('Jeste DICo. Stoji te to za to?')
-
-    if 'Brno' in personal_info['address']:
-        print('Zkurvenej brnak.')
-    else:
-        print('Diky, pyco.')
-
+    personal_info['ares'] = call_ares(personal_info['ico'])
+    print('Diky, pyco.')
     return personal_info
 
 
@@ -65,18 +46,23 @@ def clean_invoice_data(data):
         data['date'] = date_parse(data['date'])
     except:
         fuckem('Zadal si blbe datum ve fakture. ')
-    if not data['items']
+    if not data['item_list']:
+        fuckem('Musis vyplnit nejake polozky na fakturu...')
+    data['date_due'] = data['date'] + timedelta(days=data['due_days'])
+
+    data['ares'] = call_ares(data['ico'])
+    return data
 
 
-
-
-
-
-def fuckem(line):
-    print(line)
-    exit(1)
-
-
+def render_template(invoice, info):
+    env = Environment(loader=PackageLoader('fakturuj', '.'))
+    template = env.get_template('invoice.html')
+    return template.render(
+        invoice=invoice,
+        info=info,
+        title='Faktura {}'.format(invoice['number']),
+        sum_total=sum([i['cost'] * i['amount'] for i in invoice['item_list']])
+    )
 
 
 if __name__ == '__main__':
@@ -112,3 +98,6 @@ if __name__ == '__main__':
         output_file = args.output
 
     invoice_data = clean_invoice_data(load_data(args.json_file))
+
+    html_content = render_template(invoice_data, info)
+    pdfkit.from_string(html_content, output_path=output_file)

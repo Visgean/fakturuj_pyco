@@ -3,7 +3,7 @@
       "ico": "00029947",
       "date": "11.08.2016",
       "due_days": 15,
-      "items": [
+      "item_list": [
         {
           "title": "Fakturovani v excelu",
           "units": "hod",
