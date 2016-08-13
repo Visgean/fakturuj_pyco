@@ -5,7 +5,7 @@ import json
 import os
 import pdfkit
 
-from datetime import timedelta
+from datetime import timedelta, datetime
 from ares_util.ares import call_ares
 from dateutil.parser import parse as date_parse
 from jinja2 import Environment, PackageLoader
@@ -42,6 +42,9 @@ def clean_invoice_data(data):
     """
     Overi ze data maji spravnou strukturu, doplni srajdy z aresu.
     """
+    if not data.get('date'):
+        data['date'] = datetime.today()
+
     try:
         data['date'] = date_parse(data['date'])
     except:
