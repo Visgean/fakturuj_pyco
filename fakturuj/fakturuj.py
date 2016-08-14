@@ -27,13 +27,12 @@ def load_data(filename):
 
 
 def ask_stupid_questions():
+    ico = input('ICO, pyco. ')
     personal_info = {
-        'ico': input('ICO, pyco. '),
         'account': input('Cislo uctu: '),
-        # 'phone': input('Telefon: '),
-        # 'email': input('Elektricka adresa: '),
+        'ares': call_ares(ico)
     }
-    personal_info['ares'] = call_ares(personal_info['ico'])
+    
     print('Diky, pyco.')
     return personal_info
 
@@ -44,11 +43,11 @@ def clean_invoice_data(data):
     """
     if not data.get('date'):
         data['date'] = datetime.today()
-
-    try:
-        data['date'] = date_parse(data['date'])
-    except:
-        fuckem('Zadal si blbe datum ve fakture. ')
+    else:
+        try:
+            data['date'] = date_parse(data['date'])
+        except:
+            fuckem('Zadal si blbe datum ve fakture. ')
     if not data['item_list']:
         fuckem('Musis vyplnit nejake polozky na fakturu...')
     data['date_due'] = data['date'] + timedelta(days=data['due_days'])
@@ -58,7 +57,7 @@ def clean_invoice_data(data):
 
 
 def render_template(invoice, info):
-    env = Environment(loader=PackageLoader('fakturuj', '.'))
+    env = Environment(loader=PackageLoader('fakturuj'))
     template = env.get_template('invoice.html')
     return template.render(
         invoice=invoice,
@@ -69,7 +68,7 @@ def render_template(invoice, info):
     )
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser(description='Bleju faktury z jsonu.')
 
     parser.add_argument('json_file', help='jmeno souboru kde mas json')
@@ -105,3 +104,8 @@ if __name__ == '__main__':
 
     html_content = render_template(invoice_data, info)
     pdfkit.from_string(html_content, output_path=output_file)
+
+
+
+if __name__ == '__main__':
+    main()
