@@ -24,7 +24,6 @@ setup(
     license="MIT",
     keywords='urljects',
     classifiers=[
-        'Intended Audience :: Moje mama',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: Czech',
         'Programming Language :: Python :: 3',
