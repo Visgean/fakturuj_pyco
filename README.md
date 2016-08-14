@@ -28,6 +28,31 @@ $ fakturuj 2016_01.json
 
 Tohle vygeneruje pdfka s fakturama do aktualni slozky. Koukni se do slozky ``examples``.
 
+
+Priklad faktury:
+================
+
+
+```
+{
+      "number": "2016/01",
+      "ico": "00029947",
+      "due_days": 15,
+      "date": "5.3.2016"
+      "item_list": [
+        {
+          "title": "Fakturování v Excelu",
+          "amount": 20,
+          "cost": 150
+        },
+      ]
+}
+```
+
+``date`` je optional. 
+``ico`` parameter odkazuje na toho komu fakturujete, vsechny ostatni data
+se vytahnout z Aresu. 
+
 helf
 ====
 
