@@ -24,3 +24,20 @@ $ sudo apt-get install wkhtmltopdf
 
 
 Jo a sorry za nazev, ale vzdycky kdyz jsem neco fakturoval tak jsem u toho hrozne nadaval. 
+
+
+
+```
+usage: fakturuj [-h] [--output OUTPUT] [--info_file INFO_FILE] json_file
+
+Bleju faktury z jsonu.
+
+positional arguments:
+  json_file             jmeno souboru kde mas json
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --output OUTPUT       kam to chces prdnout.
+  --info_file INFO_FILE
+                        soubor z informacema o tobe
+```
