@@ -10,7 +10,7 @@ Vyhody:
 Jak:
 
 ```
-    $ fakturuj 2016_01.json 
+$ fakturuj 2016_01.json 
 ```
 
 Tohle vygeneruje pdfka s fakturama do aktualni slozky. Koukni se do slozky ``examples``.
@@ -18,8 +18,8 @@ Tohle vygeneruje pdfka s fakturama do aktualni slozky. Koukni se do slozky ``exa
 Jak to nainstalovat? 
 
 ```
-sudo apt-get install wkhtmltopdf
-pip3 install fakturuj_pyco --user
+$ pip3 install fakturuj_pyco --user
+$ sudo apt-get install wkhtmltopdf
 ``` 
 
 
