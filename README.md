@@ -7,14 +7,20 @@ Vyhody:
 2. Je to zadarmo. 
 3. Jestli se ti to nelibi tak ti furt zustane json soubor. 
 
-
 Jak:
 
 ```
-    $ fakturuj example.json 
+    $ fakturuj 2016_01.json 
 ```
 
-Tohle vygeneruje pdfka s fakturama do aktualni slozky. 
+Tohle vygeneruje pdfka s fakturama do aktualni slozky. Koukni se do slozky ``examples``.
 
-Jak to nainstalovat? ``pip install fakturuj_pyco``, jo a potrebujes jeste latex. 
-``sudo apt install texlive-full``, tohle bude chvili trvat. Dej si kafe, nebo pivo. 
+Jak to nainstalovat? 
+
+```
+sudo apt-get install wkhtmltopdf
+pip3 install fakturuj_pyco --user
+``` 
+
+
+Jo a sorry za nazev, ale vzdycky kdyz jsem neco fakturoval tak jsem u toho hrozne nadaval. 
