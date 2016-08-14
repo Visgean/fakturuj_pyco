@@ -1,0 +1,18 @@
+{
+    "account": "34278-0727558021/0100",
+    "ares": {
+        "address": {
+            "city": "Brno",
+            "city_part": "Hlavak",
+            "region": "Asie",
+            "street": "Leninova 32",
+            "zip_code": "121 03"
+        },
+        "legal": {
+            "company_id": "00029947",
+            "legal_form": "205",
+            "company_vat_id": null,
+            "company_name": "Společenstvo chřestýšů"
+        }
+    }
+}
