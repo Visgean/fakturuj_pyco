@@ -32,7 +32,7 @@ def ask_stupid_questions():
         'account': input('Cislo uctu: '),
         'ares': call_ares(ico)
     }
-    
+
     print('Diky, pyco.')
     return personal_info
 
@@ -64,7 +64,8 @@ def render_template(invoice, info):
         info=info,
         title='Faktura {}'.format(invoice['number']),
         sum_total=sum([i['cost'] * i['amount'] for i in invoice['item_list']]),
-        transaction_id=''.join([s for s in invoice['number'] if s.isdigit()])
+        transaction_id=''.join([s for s in invoice['number'] if s.isdigit()]),
+        space_number=lambda n: '{:,}'.format(n).replace(',', ' '),
     )
 
 

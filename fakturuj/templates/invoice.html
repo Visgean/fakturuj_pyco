@@ -111,7 +111,7 @@
                     <table>
                         <tr>
                             <td>
-                                {{ info.ares.legal.company_name }}<br>
+                                <b>{{ info.ares.legal.company_name }}</b><br>
                                 {{ info.ares.address.street }}<br>
                                 {{ info.ares.address.zip_code }}<br>
                                 {{ info.ares.address.city }}<br>
@@ -127,7 +127,7 @@
                             </td>
 
                             <td>
-                                {{ invoice.ares.legal.company_name }}<br>
+                                <b>{{ invoice.ares.legal.company_name }}</b><br>
                                 {{ invoice.ares.address.street }}<br>
                                 {{ invoice.ares.address.zip_code }}<br>
                                 {{ invoice.ares.address.city }}<br>
@@ -185,7 +185,7 @@
                     </td>
 
                     <td>
-                        {{ item.cost * item.amount }}
+                        {{ space_number(item.cost * item.amount) }}
                     </td>
                 </tr>
             {% endfor %}
@@ -194,7 +194,7 @@
                 <td></td>
 
                 <td>
-                   {{ sum_total }} KČ
+                   {{ space_number(sum_total) }} Kč
                 </td>
             </tr>
         </table>
