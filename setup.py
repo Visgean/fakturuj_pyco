@@ -10,7 +10,7 @@ except ImportError:
 
 setup(
     name='fakturuj_pyco',
-    version='1.1.2',
+    version='1.2',
     description="Generator faktur.",
     long_description='Generuje faktury z jsonu, pyco.',
     author="Visgean Skeloru",
@@ -22,7 +22,7 @@ setup(
     package_dir={'fakturuj': 'fakturuj'},
     # include_package_data=True,
     license="MIT",
-    keywords='urljects',
+    keywords='fakturace fakturovani invoice',
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Natural Language :: Czech',
