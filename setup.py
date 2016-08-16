@@ -10,7 +10,7 @@ except ImportError:
 
 setup(
     name='fakturuj_pyco',
-    version='1.1.1',
+    version='1.1.2',
     description="Generator faktur.",
     long_description='Generuje faktury z jsonu, pyco.',
     author="Visgean Skeloru",
