@@ -8,7 +8,7 @@ import pdfkit
 from datetime import timedelta, datetime
 from ares_util.ares import call_ares
 from dateutil.parser import parse as date_parse
-from jinja2 import Environment, PackageLoader
+from jinja2 import Environment, PackageLoader, FileSystemLoader
 
 
 def fuckem(line):
@@ -56,9 +56,14 @@ def clean_invoice_data(data):
     return data
 
 
-def render_template(invoice, info):
-    env = Environment(loader=PackageLoader('fakturuj'))
-    template = env.get_template('invoice.html')
+def render_template(invoice, info, filename=None):
+    if filename:
+        dir_name, f_name = os.path.split(filename)
+        env = Environment(loader=FileSystemLoader(dir_name or '.'))
+        template = env.get_template(f_name)
+    else:
+        env = Environment(loader=PackageLoader('fakturuj'))
+        template = env.get_template('invoice.html')
     return template.render(
         invoice=invoice,
         info=info,
@@ -73,8 +78,10 @@ def main():
     parser = argparse.ArgumentParser(description='Bleju faktury z jsonu.')
 
     parser.add_argument('json_file', help='jmeno souboru kde mas json')
-    parser.add_argument('--output', help='kam to chces prdnout.')
-    parser.add_argument('--info_file', help='soubor z informacema o tobe',
+    parser.add_argument('-o','--output', help='kam to chces prdnout.')
+    parser.add_argument('-t', '--template',
+                        help='vlastni jinja2 template na generovani faktury.')
+    parser.add_argument('-i', '--info_file', help='soubor z informacema o tobe',
                         default='./me.json')
 
     args = parser.parse_args()
@@ -103,9 +110,8 @@ def main():
 
     invoice_data = clean_invoice_data(load_data(args.json_file))
 
-    html_content = render_template(invoice_data, info)
+    html_content = render_template(invoice_data, info, filename=args.template)
     pdfkit.from_string(html_content, output_path=output_file)
-
 
 
 if __name__ == '__main__':
