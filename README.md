@@ -38,7 +38,8 @@ Priklad faktury:
       "number": "2016/01",
       "ico": "00029947",
       "due_days": 15,
-      "date": "5.3.2016"
+      "date": "5.3.2016",
+      "currency": "eur",
       "item_list": [
         {
           "title": "Fakturování v Excelu",
@@ -49,9 +50,10 @@ Priklad faktury:
 }
 ```
 
-``date`` je optional. 
+``date`` je optional, lze pouzit libovolnej format ktery rozparsuje ``dateutil``.
 ``ico`` parameter odkazuje na toho komu fakturujete, vsechny ostatni data
 se vytahnout z Aresu. 
+
 
 helf
 ====

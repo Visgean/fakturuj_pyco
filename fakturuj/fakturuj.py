@@ -67,6 +67,7 @@ def render_template(invoice, info, filename=None):
     return template.render(
         invoice=invoice,
         info=info,
+        currency=invoice.get('currency', 'Kč'),
         title='Faktura {}'.format(invoice['number']),
         sum_total=sum([i['cost'] * i['amount'] for i in invoice['item_list']]),
         transaction_id=''.join([s for s in invoice['number'] if s.isdigit()]),
