@@ -57,7 +57,7 @@ helf
 ====
 
 ```
-usage: fakturuj [-h] [--output OUTPUT] [--info_file INFO_FILE] json_file
+usage: fakturuj [-h] [-o OUTPUT] [-t TEMPLATE] [-i INFO_FILE] json_file
 
 Bleju faktury z jsonu.
 
@@ -66,7 +66,10 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --output OUTPUT       kam to chces prdnout.
-  --info_file INFO_FILE
+  -o OUTPUT, --output OUTPUT
+                        kam to chces prdnout.
+  -t TEMPLATE, --template TEMPLATE
+                        vlastni jinja2 template na generovani faktury.
+  -i INFO_FILE, --info_file INFO_FILE
                         soubor z informacema o tobe
 ```
