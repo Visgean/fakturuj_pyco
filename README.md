@@ -12,7 +12,7 @@ Jo a sorry za nazev, ale vzdycky kdyz jsem neco fakturoval tak jsem u toho hrozn
 Jak to nainstalovat? 
 ====================
 
-```
+```bash 
 $ pip3 install fakturuj_pyco --user
 $ sudo apt-get install wkhtmltopdf
 ``` 
@@ -22,7 +22,7 @@ $ sudo apt-get install wkhtmltopdf
 Jak to pouzivat?
 ================
 
-```
+```bash
 $ fakturuj 2016_01.json 
 ```
 
@@ -33,7 +33,7 @@ Priklad faktury:
 ================
 
 
-```
+```json
 {
       "number": "2016/01",
       "ico": "00029947",
