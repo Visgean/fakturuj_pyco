@@ -114,32 +114,39 @@
                     <table>
                         <tr>
                             <td>
-                                <b>{{ info.ares.legal.company_name }}</b><br>
-                                {{ info.ares.address.street }}<br>
-                                {{ info.ares.address.zip_code }}<br>
-                                {{ info.ares.address.city }}<br>
+                                <b>{{ info.personal_data.legal.company_name }}</b><br>
+                                {{ info.personal_data.address.street }}<br>
+                                {{ info.personal_data.address.zip_code }}<br>
+                                {{ info.personal_data.address.city }}<br>
 
                                 <br>
 
-                                IČ: {{ info.ares.legal.company_id }}<br>
-                                {% if info.ares.legal.company_vat_id %}
-                                    DIČ: {{ info.ares.legal.company_vat_id }}<br>
+                                IČ: {{ info.personal_data.legal.company_id }}<br>
+                                {% if info.personal_data.legal.company_vat_id %}
+                                    DIČ: {{ info.personal_data.legal.company_vat_id }}<br>
                                 {% else %}
                                     Neplátce DPH <br>
                                 {% endif %}
+
+                                <br>
+                                
+                                {% if invoice.order_no %}
+                                    Číslo objednávky: {{ invoice.order_no }}
+                                {% endif %}
+
                             </td>
 
                             <td>
-                                <b>{{ invoice.ares.legal.company_name }}</b><br>
-                                {{ invoice.ares.address.street }}<br>
-                                {{ invoice.ares.address.zip_code }}<br>
-                                {{ invoice.ares.address.city }}<br>
+                                <b>{{ invoice.company_data.legal.company_name }}</b><br>
+                                {{ invoice.company_data.address.street }}<br>
+                                {{ invoice.company_data.address.zip_code }}<br>
+                                {{ invoice.company_data.address.city }}<br>
 
                                 <br>
 
-                                IČ: {{ invoice.ares.legal.company_id }}<br>
-                                {% if invoice.ares.legal.company_vat_id %}
-                                    DIČ: {{ invoice.ares.legal.company_vat_id }}<br>
+                                IČ: {{ invoice.company_data.legal.company_id }}<br>
+                                {% if invoice.company_data.legal.company_vat_id %}
+                                    DIČ: {{ invoice.company_data.legal.company_vat_id }}<br>
                                 {% else %}
                                     Neplátce DPH <br>
                                 {% endif %}

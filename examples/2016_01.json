@@ -2,6 +2,7 @@
       "number": "2016/01",
       "ico": "00029947",
       "due_days": 15,
+      "order_no": null,
       "item_list": [
         {
           "title": "Fakturování v Excelu",

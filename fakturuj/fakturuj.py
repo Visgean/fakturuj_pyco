@@ -52,7 +52,11 @@ def clean_invoice_data(data):
         fuckem('Musis vyplnit nejake polozky na fakturu...')
     data['date_due'] = data['date'] + timedelta(days=data['due_days'])
 
-    data['ares'] = call_ares(data['ico'])
+    if 'ico' not in data:
+        assert 'company_data' in data, "You have to either specify ICO or company data."
+        data['company_data']
+    else:
+        data['company_data'] = call_ares(data['ico'])
     return data
 
 
@@ -64,6 +68,7 @@ def render_template(invoice, info, filename=None):
     else:
         env = Environment(loader=PackageLoader('fakturuj'))
         template = env.get_template('invoice.html')
+
     return template.render(
         invoice=invoice,
         info=info,
@@ -98,9 +103,12 @@ def main():
               'otazky, kdyz neco poseres tak to pak muzes opravit v tom '
               'souboru. Super co?')
 
-        with open(args.info_file, 'w') as file:
-            info = ask_stupid_questions()
-            file.write(json.dumps(info, indent=4))
+        if input("Chces ho vytahnout z ARESu? Ano/Ne") in ('Ano', 'ANO', 'A', 'a'):
+            with open(args.info_file, 'w') as file:
+                info = ask_stupid_questions()
+                file.write(json.dumps(info, indent=4))
+        else:
+            fuckem('Budes si ten soubor muset vytvorit sam.')
     else:
         info = load_data(args.info_file)
 
